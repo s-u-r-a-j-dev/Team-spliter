@@ -17,7 +17,7 @@ Team Splitter is a web application that helps you split a group of people into m
 
 1. Clone the repository:
 
-git clone https://github.com/s-u-r-a-j-dev/Team-spliter
+git clone https://github.com/s-u-r-a-j-dev/Team-spliter.git
 
 
 2. Navigate to the project directory:
