@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Team Splitter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        
+        #peopleContainer {
+            margin-bottom: 10px;
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        #result {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #result p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Team Splitter</h1>
+    
+    <div id="index" style="display:block;">
+        <form action="/split" method="POST">
+            <label for="numPeople">Number of People:</label>
+            <input type="number" id="numPeople" name="numPeople" min="1" required>
+
+            <label for="numTeams">Number of Teams:</label>
+            <input type="number" id="numTeams" name="numTeams" min="1" required>
+
+            <div id="peopleContainer">
+                <label for="person1">Name of Person 1:</label>
+                <input type="text" id="person1" name="person1" required>
+            </div>
+
+            <button type="button" onclick="addPerson()">Add Person</button>
+            <button type="submit">Split Teams</button>
+        </form>
+    </div>
+    
+    <div id="result" style="display:none;">
+        <h2>Teams:</h2>
+        <p id="teamResult"></p>
+    </div>
+
+    <script>
+        function addPerson() {
+            const peopleContainer = document.getElementById("peopleContainer");
+            const numPeople = document.querySelectorAll('[id^="person"]').length + 1;
+
+            const label = document.createElement("label");
+            label.textContent = `Name of Person ${numPeople}:`;
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.id = `person${numPeople}`;
+            input.name = `person${numPeople}`;
+            input.required = true;
+
+            peopleContainer.appendChild(label);
+            peopleContainer.appendChild(input);
+        }
+        
+        function showResult(teams) {
+            const indexSection = document.getElementById("index");
+            const resultSection = document.getElementById("result");
+            const teamResult = document.getElementById("teamResult");
+            
+            indexSection.style.display = "none";
+            resultSection.style.display = "block";
+            
+            teamResult.innerHTML = "";
+            teams.forEach(function(team, index) {
+                const teamText = `Team ${index + 1}: ${team.join(", ")}`;
+                const teamElement = document.createElement("p");
+                teamElement.textContent = teamText;
+                teamResult.appendChild(teamElement);
+            });
+        }
+    </script>
+</body>
+</html>
