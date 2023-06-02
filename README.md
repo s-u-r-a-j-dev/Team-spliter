@@ -11,14 +11,13 @@ Team Splitter is a web application that helps you split a group of people into m
 
 ## Requirements
 
-- Python 3.x
+- Python 3
 
 ## Usage
 
 1. Clone the repository:
 
 git clone https://github.com/s-u-r-a-j-dev/Team-spliter.git
-
 
 2. Navigate to the project directory:
 
@@ -27,7 +26,6 @@ cd Team-spliter
 3. Run the Python server:
 
 python server.py
-
 
 4. Open your web browser and go to `http://localhost:8000`.
 
